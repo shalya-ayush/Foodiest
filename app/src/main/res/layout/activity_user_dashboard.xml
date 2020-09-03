@@ -25,6 +25,8 @@
             android:id="@+id/user_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:itemIconTint="@color/selector"
+            app:itemTextColor="@color/selector"
             android:background="?android:attr/windowBackground"
 
             app:menu="@menu/user_bottom_navigation">
@@ -42,10 +44,11 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="?android:attr/windowBackground"
             android:elevation="10dp"
-            android:padding="10dp"></androidx.appcompat.widget.Toolbar>
+            android:padding="10dp">
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
 </RelativeLayout>

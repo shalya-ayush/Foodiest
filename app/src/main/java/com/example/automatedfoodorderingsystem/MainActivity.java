@@ -8,21 +8,20 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.restaurantPart.RestaurantLoginActivity;
-import com.example.automatedfoodorderingsystem.userPart.UserLoginActivity;
+import com.example.automatedfoodorderingsystem.userPart.UserRegistrationActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button user, restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        user = findViewById(R.id.user);
-        restaurant = findViewById(R.id.restaurant);
+        Button user = findViewById(R.id.user);
+        Button restaurant = findViewById(R.id.restaurant);
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UserLoginActivity.class));
+                startActivity(new Intent(MainActivity.this, UserRegistrationActivity.class));
                 finish();
             }
         });
