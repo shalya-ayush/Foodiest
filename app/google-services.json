@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1061101290352",
+    "firebase_url": "https://food-ordering-system-fd0d8.firebaseio.com",
+    "project_id": "food-ordering-system-fd0d8",
+    "storage_bucket": "food-ordering-system-fd0d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061101290352:android:348da137eeedff122605b5",
+        "android_client_info": {
+          "package_name": "com.example.automatedfoodorderingsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061101290352-q2ee47la7lsc76j873biq7kfcrgtqlod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXGXRpHt13QeUDgEGJMMZ6MCYT_uZR8ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061101290352-q2ee47la7lsc76j873biq7kfcrgtqlod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
