@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.restaurantPart.RestaurantLoginActivity;
+import com.example.automatedfoodorderingsystem.userPart.UserDashboardActivity;
 import com.example.automatedfoodorderingsystem.userPart.UserRegistrationActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button user = findViewById(R.id.user);
         Button restaurant = findViewById(R.id.restaurant);
+        Button skip = findViewById(R.id.skip);
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RestaurantLoginActivity.class));
                 finish();
+            }
+        });
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UserDashboardActivity.class));
+                finish();
+
             }
         });
 
