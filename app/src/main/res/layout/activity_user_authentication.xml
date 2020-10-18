@@ -8,6 +8,13 @@
     android:padding="20dp"
     tools:context=".userPart.UserAuthenticationActivity">
 
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        app:tint="@color/selector" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,15 +52,28 @@
 
     </TextView>
 
+    <EditText
+        android:id="@+id/user_mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/flag_transparent"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:textColor="#F44336"
+        android:textSize="16sp" />
+
     <com.chaos.view.PinView
         style="@style/PinWidget.PinView"
         android:layout_width="wrap_content"
+        android:id="@+id/user_OTP_pin"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginVertical="10dp"
         android:inputType="number"
         android:itemBackground="#F8F9FA"
-        app:hideLineWhenFilled="true"
+        android:cursorVisible="true"
+        app:hideLineWhenFilled="false"
         app:itemCount="6"
         app:itemHeight="40dp"
         app:itemRadius="5dp"
@@ -71,6 +91,7 @@
         android:layout_marginVertical="20dp"
         android:gravity="center"
         android:text="Resend OTP?"
+        android:id="@+id/user_resend_otp"
         android:textColor="#2A44D3"
         android:textSize="15sp">
 
@@ -80,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:id="@+id/user_verify_btn"
         android:background="@drawable/button_background"
         android:text="Verify"
         android:textColor="#ffffff"

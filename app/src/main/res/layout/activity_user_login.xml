@@ -6,27 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".userPart.UserRegistrationActivity">
-
+    tools:context=".userPart.UserLoginActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:src="@drawable/ic_arrow_back"
-        app:tint="@color/selector">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
+        android:src="@drawable/ic_profile"
+        app:tint="#E44B4B">
 
     </ImageView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Create Account"
-        android:textColor="#000000"
-        android:textSize="30sp">
-
-    </TextView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,27 +29,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name"
-                android:textColorHint="#000000"
-                app:boxStrokeWidthFocused="2dp"
-                app:endIconMode="clear_text"
-                app:endIconTint="#000000"
-                app:hintTextColor="#000000"
-                app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="#000000">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName">
-
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user_email"
@@ -83,6 +53,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user_password"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -107,51 +78,40 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/country_code"
+                <CheckBox
+                    android:id="@+id/user_remember_me"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    app:ccp_autoDetectCountry="true"
-                    app:ccp_showFlag="true"
-                    app:ccp_showFullName="false"
-                    app:ccp_showNameCode="true">
+                    android:buttonTint="@color/selector"
+                    android:text="Remember Me">
 
-                </com.hbb20.CountryCodePicker>
+                </CheckBox>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/user_phoneNo"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/forgot_password_btn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/country_code"
-                    android:textColorHint="#000000"
-                    app:boxStrokeWidthFocused="2dp"
-                    app:endIconMode="clear_text">
+                    android:background="@drawable/flag_transparent"
+                    android:text="Forgot Password?"
+                    android:textAllCaps="false"
+                    android:textColor="#123456">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Phone Number"
-                        android:inputType="number"
-                        android:maxLength="10">
-
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
-
+                </Button>
 
             </RelativeLayout>
 
             <Button
-                android:id="@+id/user_register_btn"
+                android:id="@+id/user_login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="15dp"
                 android:background="@drawable/button_background"
                 android:elevation="8dp"
                 android:padding="10dp"
-                android:text="Register"
+                android:text="Login"
                 android:textColor="#ffffff"
                 android:textSize="16sp">
 
@@ -164,18 +124,17 @@
 
 
     <Button
-        android:id="@+id/user_login_btn"
+        android:id="@+id/user_register_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/flag_transparent"
         android:elevation="8dp"
-        android:padding="10dp"
-        android:text="Login"
-        android:textColor="#ffffff"
-        android:textSize="16sp">
+        android:text="New User?"
+        android:textAllCaps="false"
+        android:textColor="#123456"
+        android:textSize="18sp">
 
     </Button>
-
 
 </LinearLayout>
