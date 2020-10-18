@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 public class UserRegistrationActivity extends AppCompatActivity {
     // XML fields
@@ -18,6 +19,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
     private TextInputLayout userPhoneNo;
     private Button registerBtn;
     private Button loginBtn;
+    CountryCodePicker countryCodePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.user_password);
         userPhoneNo = findViewById(R.id.user_phoneNo);
         registerBtn = findViewById(R.id.user_register_btn);
+        countryCodePicker = findViewById(R.id.country_code);
         loginBtn = findViewById(R.id.user_login_btn);
 
 
@@ -41,8 +44,9 @@ public class UserRegistrationActivity extends AppCompatActivity {
 
                 String getUserName = userName.getEditText().getText().toString();
                 String getUserEmail = userEmail.getEditText().getText().toString();
+                String getUserEnteredPhoneNo = userPhoneNo.getEditText().getText().toString();
+                String getUserPhoneNo = "+" + countryCodePicker.getFullNumber() + getUserEnteredPhoneNo;
                 String getUserPassword = userPassword.getEditText().getText().toString();
-                String getUserPhoneNo = userPhoneNo.getEditText().getText().toString();
                 Intent intent = new Intent(getApplicationContext(), UserAuthenticationActivity.class);
                 intent.putExtra("userName", getUserName);
                 intent.putExtra("userEmail", getUserEmail);
