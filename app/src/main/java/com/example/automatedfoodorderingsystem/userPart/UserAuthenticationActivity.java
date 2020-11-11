@@ -21,6 +21,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
@@ -130,7 +131,13 @@ public class UserAuthenticationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    storeNewUsersData();   // Method to store data into the firebase
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                        storeNewUsersData();   // Method to store data into the firebase
+
+                    } else {
+                        Toast.makeText(UserAuthenticationActivity.this, "Phone Number already registered", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -144,7 +151,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     private void storeNewUsersData() {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("UsersDatabase");
-        UserDatabase newUser = new UserDatabase(userName, userEmail, userPassword, userPassword);
+        UserDatabase newUser = new UserDatabase(userName, userEmail, userPassword, userPhoneNo);
         reference.child(mAuth.getCurrentUser().getUid()).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

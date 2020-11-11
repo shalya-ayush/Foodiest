@@ -4,11 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 
 public class UserRegistrationActivity extends AppCompatActivity {
@@ -20,6 +27,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
     private Button registerBtn;
     private Button loginBtn;
     CountryCodePicker countryCodePicker;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.user_register_btn);
         countryCodePicker = findViewById(R.id.country_code);
         loginBtn = findViewById(R.id.user_login_btn);
+        mAuth = FirebaseAuth.getInstance();
 
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,9 +53,9 @@ public class UserRegistrationActivity extends AppCompatActivity {
 
                 String getUserName = userName.getEditText().getText().toString();
                 String getUserEmail = userEmail.getEditText().getText().toString();
+                String getUserPassword = userPassword.getEditText().getText().toString();
                 String getUserEnteredPhoneNo = userPhoneNo.getEditText().getText().toString();
                 String getUserPhoneNo = "+" + countryCodePicker.getFullNumber() + getUserEnteredPhoneNo;
-                String getUserPassword = userPassword.getEditText().getText().toString();
                 Intent intent = new Intent(getApplicationContext(), UserAuthenticationActivity.class);
                 intent.putExtra("userName", getUserName);
                 intent.putExtra("userEmail", getUserEmail);
@@ -119,9 +128,32 @@ public class UserRegistrationActivity extends AppCompatActivity {
             userPhoneNo.setHintEnabled(false);
             return false;
         } else {
+
             userPhoneNo.setError(null);
+            FirebaseDatabase.getInstance().getReference().child("UsersDatabase").child(mAuth.getCurrentUser().getUid()).
+                    orderByChild("phoneNo").equalTo(userPhoneNo.getEditText().getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.getValue() != null) {
+                        Toast.makeText(UserRegistrationActivity.this, "Phone Number Already registered", Toast.LENGTH_SHORT).show();
+                        userPhoneNo.setError("phoneNumber Already registered");
+
+                    } else {
+                        userPhoneNo.setError(null);
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
             return true;
         }
+
 
     }
 }
