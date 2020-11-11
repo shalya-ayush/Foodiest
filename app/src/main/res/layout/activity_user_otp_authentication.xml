@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".userPart.UserOtpAuthentication">
+
+    <ImageView
+        android:id="@+id/l_close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        app:tint="@color/selector" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Code"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="50sp">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Verification"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="30sp">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
+        android:gravity="center"
+        android:text="Enter the code sent to your Mobile Number"
+        android:textColor="#000000"
+        android:textSize="20sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/l_user_mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/flag_transparent"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:textColor="#F44336"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/l_user_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/edit_text_background"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/textColor"
+        android:hint="Enter OTP"
+        android:inputType="numberPassword"
+        android:padding="10dp" />
+
+
+    <TextView
+        android:id="@+id/l_user_resend_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        android:gravity="center"
+        android:text="Resend OTP?"
+        android:textColor="#2A44D3"
+        android:textSize="15sp">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/l_user_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:text="login"
+        android:textColor="#ffffff"
+        android:textSize="18sp">
+
+    </Button>
+
+
+</LinearLayout>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".userPart.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_account_circle_"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_overlay="false"
+            app:civ_border_width="2dp" />
+
+        <Button
+            android:id="@+id/uploadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/textColor"
+            android:elevation="10dp"
+            android:fontFamily="@font/arvo"
+            android:paddingHorizontal="50dp"
+            android:text="Upload"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <!--User Name-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/name"
+            android:text="Name"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/arvo"
+            android:hint="User Name"
+            android:padding="8dp"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+
+        <!--User Email-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/email"
+            android:text="Email"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/arvo"
+            android:hint="useremail@gmail.com"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+        <!--User Password-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:labelFor="@+id/password"
+            android:text="Password"
+            android:textColor="@color/textColor" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/arvo"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/textColor" />
+
+        <!--User Phone number-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:labelFor="@+id/mobile"
+            android:text="Mobile"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/arvo"
+            android:hint="Mobile Number"
+            android:inputType="textPhonetic"
+            android:padding="8dp"
+            android:textColor="@color/textColor" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/arvo"
+            android:padding="10dp"
+            android:text="Update Profile"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</ScrollView>
