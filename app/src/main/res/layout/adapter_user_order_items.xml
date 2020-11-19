@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow android:background="@drawable/table_header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="S.no"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/table_header"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Dish Name"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="Amount ( in Rs.)"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow android:background="@drawable/divider">
+
+        <TextView
+            android:id="@+id/sno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="1"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dishName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@drawable/divider"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Shahi Paneer"
+            android:textColor="@color/textColor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/arvo"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="150"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+
+</TableLayout>

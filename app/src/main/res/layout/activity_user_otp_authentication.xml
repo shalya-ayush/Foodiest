@@ -76,13 +76,26 @@
         android:inputType="numberPassword"
         android:padding="10dp" />
 
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="5dp"
+        android:gravity="center"
+        android:text="00:00"
+        android:textColor="@color/textColor"
+        android:textSize="15sp">
+
+    </TextView>
+
 
     <TextView
         android:id="@+id/l_user_resend_otp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="10dp"
         android:gravity="center"
         android:text="Resend OTP?"
         android:textColor="#2A44D3"

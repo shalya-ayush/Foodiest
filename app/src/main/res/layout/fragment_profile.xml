@@ -159,5 +159,19 @@
         android:textFontWeight="800"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/testing_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/arvo"
+        android:padding="15dp"
+        android:text="Test"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textFontWeight="800"
+        android:textSize="18sp" />
+
 
 </LinearLayout>
