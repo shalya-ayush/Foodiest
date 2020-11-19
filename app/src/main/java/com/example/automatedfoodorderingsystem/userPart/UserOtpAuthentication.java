@@ -2,6 +2,7 @@ package com.example.automatedfoodorderingsystem.userPart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,17 +23,24 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class UserOtpAuthentication extends AppCompatActivity {
+    private static final long START_TIME_IN_MILLIS = 60000;
+    TextView timer;
+    CountDownTimer countDownTimer;
     ImageView cancelBtn;
     EditText mobileNo;
     EditText otp;
     TextView resendOtp;
+    private boolean mTimerRunning;
     Button loginBtn;
     String phoneNo;
     String codeBySystem;
     FirebaseAuth mAuth;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
     ////////// Callbacks Method ///////////
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
@@ -63,9 +71,11 @@ public class UserOtpAuthentication extends AppCompatActivity {
         mobileNo = findViewById(R.id.l_user_mobileNo);
         otp = findViewById(R.id.l_user_otp);
         resendOtp = findViewById(R.id.l_user_resend_otp);
+        timer = findViewById(R.id.timer);
         loginBtn = findViewById(R.id.l_user_login_btn);
         mAuth = FirebaseAuth.getInstance();
         phoneNo = getIntent().getStringExtra("mobileNo");
+        startTimer();
 
         sendOTP();
 
@@ -83,6 +93,30 @@ public class UserOtpAuthentication extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void startTimer() {
+        countDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateTimerText();
+
+
+            }
+
+            @Override
+            public void onFinish() {
+
+
+            }
+        }.start();
+    }
+
+    private void updateTimerText() {
+        int seconds = (int) (mTimeLeftInMillis / 1000);
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", 0, seconds);
+        timer.setText(timeFormatted);
     }
 
     private void sendOTP() {

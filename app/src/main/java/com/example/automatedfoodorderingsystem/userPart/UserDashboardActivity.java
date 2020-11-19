@@ -1,5 +1,6 @@
 package com.example.automatedfoodorderingsystem.userPart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -9,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.automatedfoodorderingsystem.R;
 import com.example.automatedfoodorderingsystem.UserFragments.FragmentHome;
-import com.example.automatedfoodorderingsystem.UserFragments.FragmentMenu;
 import com.example.automatedfoodorderingsystem.UserFragments.FragmentPay;
 import com.example.automatedfoodorderingsystem.UserFragments.FragmentProfile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,7 +25,8 @@ public class UserDashboardActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.user_menu:
-                    selectedFragment = new FragmentMenu();
+                    selectedFragment = null;
+                    startActivity(new Intent(UserDashboardActivity.this, ScannerActivity.class));
                     break;
                 case R.id.user_pay:
                     selectedFragment = new FragmentPay();
@@ -34,11 +35,16 @@ public class UserDashboardActivity extends AppCompatActivity {
                     selectedFragment = new FragmentProfile();
                     break;
             }
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
+//            fragmentTransaction.replace(R.id.fragment_container,selectedFragment).commit();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
             return true;
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

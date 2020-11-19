@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.automatedfoodorderingsystem.MainActivity;
 import com.example.automatedfoodorderingsystem.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,12 +22,13 @@ import com.hbb20.CountryCodePicker;
 
 public class UserRegistrationActivity extends AppCompatActivity {
     // XML fields
-    private TextInputLayout userName;
-    private TextInputLayout userEmail;
-    private TextInputLayout userPassword;
-    private TextInputLayout userPhoneNo;
-    private Button registerBtn;
-    private Button loginBtn;
+    TextInputLayout userName;
+    TextInputLayout userEmail;
+    TextInputLayout userPassword;
+    TextInputLayout userPhoneNo;
+    Button registerBtn;
+    Button loginBtn;
+    ImageView backPressBtn;
     CountryCodePicker countryCodePicker;
     FirebaseAuth mAuth;
 
@@ -41,7 +44,17 @@ public class UserRegistrationActivity extends AppCompatActivity {
         registerBtn = findViewById(R.id.user_register_btn);
         countryCodePicker = findViewById(R.id.country_code);
         loginBtn = findViewById(R.id.user_login_btn);
+        backPressBtn = findViewById(R.id.backPress);
         mAuth = FirebaseAuth.getInstance();
+
+
+        backPressBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserRegistrationActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
