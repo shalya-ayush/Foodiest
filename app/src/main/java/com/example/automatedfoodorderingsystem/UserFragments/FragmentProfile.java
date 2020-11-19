@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,7 +38,7 @@ public class FragmentProfile extends Fragment {
     TextView shareApp;
     TextView reportBug;
     TextView rateApp;
-    Button logoutBtn;
+    Button logoutBtn, test;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser mUser;
@@ -79,6 +80,19 @@ public class FragmentProfile extends Fragment {
             @Override
             public void onClick(View v) {
                 logoutUser();
+            }
+        });
+        test = view.findViewById(R.id.testing_btn);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = Objects.requireNonNull(getActivity()).getPackageManager().getLaunchIntentForPackage("com.google.android.apps.nbu.paisa.user");
+                if (i != null) {
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getContext(), "No such app is there", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
