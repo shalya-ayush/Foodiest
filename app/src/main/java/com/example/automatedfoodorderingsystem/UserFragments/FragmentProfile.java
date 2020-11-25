@@ -1,5 +1,7 @@
 package com.example.automatedfoodorderingsystem.UserFragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -38,7 +40,7 @@ public class FragmentProfile extends Fragment {
     TextView shareApp;
     TextView reportBug;
     TextView rateApp;
-    Button logoutBtn, test;
+    Button logoutBtn;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser mUser;
@@ -79,27 +81,42 @@ public class FragmentProfile extends Fragment {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logoutUser();
-            }
-        });
-        test = view.findViewById(R.id.testing_btn);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = Objects.requireNonNull(getActivity()).getPackageManager().getLaunchIntentForPackage("com.google.android.apps.nbu.paisa.user");
-                if (i != null) {
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getContext(), "No such app is there", Toast.LENGTH_SHORT).show();
-                }
+                new AlertDialog.Builder(getActivity()).setIcon(R.mipmap.circlelogo)
+                        .setTitle("Foodiest")
+                        .setMessage("Do you really want to logout?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                logoutUser();
+                            }
+                        }).setNegativeButton("No", null)
+                        .show();
 
             }
         });
+
+//        test = view.findViewById(R.id.testing_btn);
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = Objects.requireNonNull(getActivity()).getPackageManager().getLaunchIntentForPackage("com.google.android.apps.nbu.paisa.user");
+//                if (i != null) {
+//                    startActivity(i);
+//                } else {
+//                    Toast.makeText(getContext(), "No such app is there", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
 
         /////// Method to show user name and mobile number ///////
+
         showUserName();
+
+
         return view;
     }
+
 
     ///////Method to show user name and mobile number /////////
     private void showUserName() {
@@ -107,8 +124,17 @@ public class FragmentProfile extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserDatabase user = snapshot.getValue(UserDatabase.class);
-                userName.setText(user.getName());
-                userMobile.setText(user.getPhoneNo().substring(3));
+                if (user != null) {
+                    userName.setText(user.getName());
+                    userMobile.setText(user.getPhoneNo().substring(3));
+                    Picasso.get().load(user.getImageUrl()).placeholder(R.drawable.ic_account_circle_).into(profileImage);
+                } else {
+                    userName.setVisibility(View.GONE);
+                    userMobile.setVisibility(View.GONE);
+                    Picasso.get().load(R.drawable.logo).into(profileImage);
+
+                }
+
             }
 
             @Override
@@ -128,4 +154,6 @@ public class FragmentProfile extends Fragment {
         Objects.requireNonNull(getActivity()).finish();
 
     }
+
+
 }

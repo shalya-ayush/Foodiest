@@ -48,7 +48,7 @@
             android:textColor="@color/textColor" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/user_home_recView"
+            android:id="@+id/nearbyRestaurants_recView"
             android:layout_width="match_parent"
             android:layout_height="250dp" />
 

@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.R;
 import com.hbb20.CountryCodePicker;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserLoginActivity extends AppCompatActivity {
-    ImageView profileImage;
+    CircleImageView profileImage;
     CountryCodePicker ccp;
     EditText mobileNumber;
     Button otpBtn;

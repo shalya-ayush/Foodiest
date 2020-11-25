@@ -2,49 +2,67 @@ package com.example.automatedfoodorderingsystem.userPart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     ZXingScannerView scannerView;
+    FirebaseUser mUser;
+    ImageView backBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-        Toast.makeText(this, "Please Scan the QR code", Toast.LENGTH_LONG).show();
         scannerView = findViewById(R.id.scannerView);
+        backBtn = findViewById(R.id.back_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ScannerActivity.this, UserDashboardActivity.class));
+                finish();
+            }
+        });
+        Toast.makeText(this, "Please Scan the QR code", Toast.LENGTH_SHORT).show();
+
+
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
+
 
     @Override
     public void handleResult(Result result) {
+
         String id = result.getText();
-        Intent i = new Intent(ScannerActivity.this, TestActivity.class);
+        /// to send restaurant id into the usersDatabase
+        FirebaseDatabase.getInstance().getReference().child("UsersDatabase").child(mUser.getUid()).child("restaurantId").setValue(id);
+
+        Intent i = new Intent(ScannerActivity.this, MenuActivity.class);
         i.putExtra("id", id);
         startActivity(i);
-//        String url = result.getText();
-//        Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
-//        startActivity(i);
-//        showMenu(url);
-        onBackPressed();
+
+        finish();
+//        onBackPressed();
 
     }
 
-    private void showMenu(String url) {
-//        FirebaseDatabase.getInstance().getReference().child("RestaurantDatabase").child(url).addValueEventListener()
-    }
 
 //    @Override
 //    public void onBackPressed() {
 //        super.onBackPressed();
-//        startActivity(new Intent(ScannerActivity.this,EditProfileActivity.class));
+//        startActivity(new Intent(ScannerActivity.this, UserDashboardActivity.class));
 //    }
 
     @Override

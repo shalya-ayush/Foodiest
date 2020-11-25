@@ -15,6 +15,16 @@
         android:src="@drawable/ic_close"
         app:tint="@color/selector" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/l_user_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
+        android:src="@drawable/logo"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="2dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

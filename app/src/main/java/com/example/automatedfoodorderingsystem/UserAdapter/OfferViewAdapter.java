@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.automatedfoodorderingsystem.R;
 
 public class OfferViewAdapter extends RecyclerView.Adapter<OfferViewAdapter.ViewHolder> {
-    private Context mContext;
+    private final Context mContext;
     //    ArrayList<GridImages> imagesArrayList;
     private Integer[] imagesList = {R.drawable.image1, R.drawable.image2, R.drawable.image3};
 

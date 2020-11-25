@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class FragmentHome extends Fragment {
     ViewPager viewPager;
-    RecyclerView recyclerView;
+    RecyclerView nearbyRestaurantsView;
     RecyclerView offerRecyclerView;
     ViewPagerAdapter viewPagerAdapter;
     OfferViewAdapter offerViewAdapter;
@@ -34,36 +34,45 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //////View Pager ///////
         viewPager = view.findViewById(R.id.user_viewPager);
-        recyclerView = view.findViewById(R.id.user_home_recView);
+        viewPagerAdapter = new ViewPagerAdapter(getContext());
+        viewPager.setAdapter(viewPagerAdapter);
+
+
+        ////// Best offers for You Recycler View
         offerRecyclerView = view.findViewById(R.id.user_offers_recView);
         offerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        viewPagerAdapter = new ViewPagerAdapter(getContext());
         offerViewAdapter = new OfferViewAdapter(getContext());
         offerRecyclerView.setAdapter(offerViewAdapter);
-        gridImagesArrayList = new ArrayList<>();
 
-        gridViewAdapter = new GridViewAdapter(getContext(), gridImagesArrayList);
+
+        ///////Nearby Restaurants Recycler View
+        nearbyRestaurantsView = view.findViewById(R.id.nearbyRestaurants_recView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false);
+        nearbyRestaurantsView.setLayoutManager(gridLayoutManager);
+
+
+        gridImagesArrayList = new ArrayList<>();
         GridImages obj1 = new GridImages(R.drawable.image1);
         gridImagesArrayList.add(obj1);
-        GridImages obj2 = new GridImages(R.drawable.ic_profile);
+        GridImages obj2 = new GridImages(R.drawable.image3);
         gridImagesArrayList.add(obj2);
         GridImages obj3 = new GridImages(R.drawable.image2);
         gridImagesArrayList.add(obj3);
-        GridImages obj4 = new GridImages(R.drawable.ic_profile);
+        GridImages obj4 = new GridImages(R.drawable.image1);
         gridImagesArrayList.add(obj4);
-        GridImages obj5 = new GridImages(R.drawable.ic_launcher_background);
+        GridImages obj5 = new GridImages(R.drawable.logo);
         gridImagesArrayList.add(obj5);
         GridImages obj6 = new GridImages(R.drawable.image3);
         gridImagesArrayList.add(obj6);
-        GridImages obj7 = new GridImages(R.drawable.ic_launcher_background);
+        GridImages obj7 = new GridImages(R.drawable.logo);
         gridImagesArrayList.add(obj7);
         GridImages obj8 = new GridImages(R.drawable.ic_profile);
         gridImagesArrayList.add(obj8);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(gridViewAdapter);
-        viewPager.setAdapter(viewPagerAdapter);
+        gridViewAdapter = new GridViewAdapter(getContext(), gridImagesArrayList);
+        nearbyRestaurantsView.setAdapter(gridViewAdapter);
         return view;
     }
 }

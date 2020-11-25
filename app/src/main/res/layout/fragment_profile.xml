@@ -42,7 +42,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:elevation="8dp"
         app:cardCornerRadius="100dp">
 
@@ -50,7 +50,8 @@
             android:id="@+id/user_profile_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:backgroundTint="@color/colorPrimary"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="2dp"
             android:src="@drawable/ic_account_circle_">
 
         </de.hdodenhof.circleimageview.CircleImageView>
@@ -154,20 +155,6 @@
         android:fontFamily="@font/arvo"
         android:padding="15dp"
         android:text="Logout"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textFontWeight="800"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/testing_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:background="@drawable/button_background"
-        android:fontFamily="@font/arvo"
-        android:padding="15dp"
-        android:text="Test"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textFontWeight="800"

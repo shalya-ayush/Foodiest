@@ -9,10 +9,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.automatedfoodorderingsystem.Model.OrderDetails;
 import com.example.automatedfoodorderingsystem.R;
+
+import java.util.ArrayList;
 
 public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.ViewHolder> {
     Context mContext;
+    ArrayList<OrderDetails> orderList;
+    int count = 1;
+
+    public OrderItemsAdapter(Context mContext, ArrayList<OrderDetails> orderList) {
+        this.mContext = mContext;
+        this.orderList = orderList;
+    }
 
     @NonNull
     @Override
@@ -23,27 +33,35 @@ public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        OrderDetails orderDetails = orderList.get(position);
 
-//        ToDo : to add array list  to get orders list
+        holder.dishName.setText(orderDetails.getDishName());
+        holder.dishQty.setText(orderDetails.getDishQty());
+        holder.dishPrice.setText(orderDetails.getDishPrice());
+        holder.sno.setText(String.valueOf(count++));
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return orderList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView sno;
-        TextView dishName;
-        TextView amount;
+
+        TextView sno, dishName, dishQty, dishPrice;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            sno = itemView.findViewById(R.id.sno);
+
             dishName = itemView.findViewById(R.id.dishName);
-            amount = itemView.findViewById(R.id.amount);
+            dishQty = itemView.findViewById(R.id.dishQty);
+            dishPrice = itemView.findViewById(R.id.dishPrice);
+            sno = itemView.findViewById(R.id.Sno);
+
+
         }
     }
 }

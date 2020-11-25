@@ -3,8 +3,9 @@ package com.example.automatedfoodorderingsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,11 @@ import com.example.automatedfoodorderingsystem.userPart.UserRegistrationActivity
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
+    CircleImageView logoImage;
+    Button userBtn;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     FirebaseUser mUser;
@@ -24,16 +29,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button user = findViewById(R.id.user);
+        mAuth = FirebaseAuth.getInstance();
+        userBtn = findViewById(R.id.user);
+        logoImage = findViewById(R.id.logoImage);
+
         Button restaurant = findViewById(R.id.restaurant);
         Button skip = findViewById(R.id.skip);
-        user.setOnClickListener(new View.OnClickListener() {
+
+        ////// To set Animation on user button and App logo  //////
+        Animation fromRight = AnimationUtils.loadAnimation(this, R.anim.enter_from_right);
+        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
+//        logoImage.setAnimation(slideDown);
+        userBtn.setAnimation(fromRight);
+
+        //////User Button ////////
+        userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, UserRegistrationActivity.class));
                 finish();
             }
         });
+
+        /////// Restaurant Button /////
         restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        /////// Test Button ////////
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        mAuth = FirebaseAuth.getInstance();
+
+        /////// To check if user is already logged in or not ///////
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 mUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (mUser != null) {
-                    Toast.makeText(MainActivity.this, "Verified User", Toast.LENGTH_SHORT).show();
                     sendUserToDashboardActivity();
                     finish();
 
@@ -65,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
     }
+
+    ////////// Method to send User to DashBoardActivity ///////////
 
     private void sendUserToDashboardActivity() {
         Intent intent = new Intent(MainActivity.this, UserDashboardActivity.class);
@@ -87,4 +109,5 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         mAuth.removeAuthStateListener(authStateListener);
     }
+
 }

@@ -5,15 +5,19 @@ public class UserDatabase {
     String email;
     String password;
     String phoneNo;
+    String imageUrl;
+    String restaurantId;
 
     public UserDatabase() {
     }
 
-    public UserDatabase(String name, String email, String password, String phoneNo) {
+    public UserDatabase(String name, String email, String password, String phoneNo, String imageUrl, String restaurantId) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNo = phoneNo;
+        this.imageUrl = imageUrl;
+        this.restaurantId = restaurantId;
     }
 
     public String getName() {
@@ -46,5 +50,21 @@ public class UserDatabase {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }

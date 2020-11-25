@@ -5,19 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.MainActivity;
 import com.example.automatedfoodorderingsystem.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 
 public class UserRegistrationActivity extends AppCompatActivity {
@@ -143,26 +137,6 @@ public class UserRegistrationActivity extends AppCompatActivity {
         } else {
 
             userPhoneNo.setError(null);
-            FirebaseDatabase.getInstance().getReference().child("UsersDatabase").child(mAuth.getCurrentUser().getUid()).
-                    orderByChild("phoneNo").equalTo(userPhoneNo.getEditText().getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.getValue() != null) {
-                        Toast.makeText(UserRegistrationActivity.this, "Phone Number Already registered", Toast.LENGTH_SHORT).show();
-                        userPhoneNo.setError("phoneNumber Already registered");
-
-                    } else {
-                        userPhoneNo.setError(null);
-                    }
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
 
             return true;
         }

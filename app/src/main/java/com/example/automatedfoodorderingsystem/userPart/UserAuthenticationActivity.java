@@ -31,14 +31,14 @@ import java.util.concurrent.TimeUnit;
 
 public class UserAuthenticationActivity extends AppCompatActivity {
     String codeBySystem;
-    String userName, userEmail, userPassword, userPhoneNo;
+    String userName, userEmail, userPassword, userPhoneNo, imageUrl, restaurantId;
     //XML fields
-    private EditText mobileNo;
-    private ImageView closeBtn;
-    private Button verifyButton;
-    private PinView pinView;
-    private FirebaseAuth mAuth;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+    EditText mobileNo;
+    ImageView closeBtn;
+    Button verifyButton;
+    PinView pinView;
+    FirebaseAuth mAuth;
+    private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
@@ -79,6 +79,8 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         userEmail = getIntent().getStringExtra("userEmail");
         userPassword = getIntent().getStringExtra("userPassword");
         userPhoneNo = getIntent().getStringExtra("userPhoneNo");
+        imageUrl = "default";
+        restaurantId = "default";
 
         // to set the value of Mobile number received from the user
         mobileNo.setText(userPhoneNo);
@@ -151,7 +153,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     private void storeNewUsersData() {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("UsersDatabase");
-        UserDatabase newUser = new UserDatabase(userName, userEmail, userPassword, userPhoneNo);
+        UserDatabase newUser = new UserDatabase(userName, userEmail, userPassword, userPhoneNo, imageUrl, restaurantId);
         reference.child(mAuth.getCurrentUser().getUid()).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

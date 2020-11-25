@@ -7,12 +7,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/circlelogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/circlelogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".userPart.TestActivity"></activity>
+        <activity android:name=".userPart.SelectedDishActivity"></activity>
+        <activity
+            android:name=".userPart.MenuActivity"
+            android:parentActivityName=".userPart.UserDashboardActivity" />
         <activity android:name=".userPart.ScannerActivity" />
         <activity android:name=".userPart.EditProfileActivity" />
         <activity android:name=".userPart.UserOtpAuthentication" />
@@ -31,6 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

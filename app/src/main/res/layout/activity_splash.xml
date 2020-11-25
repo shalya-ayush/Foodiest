@@ -3,18 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/applogo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/appName"
+        android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="Splash Activity"
-        android:textSize="25sp">
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/shrikhand"
+        android:text="Foodiest"
+        android:textColor="#ff1616"
+        android:textSize="40sp" />
 
-    </TextView>
 
 </LinearLayout>
