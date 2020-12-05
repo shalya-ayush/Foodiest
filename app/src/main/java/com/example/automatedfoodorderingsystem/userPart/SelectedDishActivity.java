@@ -33,7 +33,7 @@ public class SelectedDishActivity extends AppCompatActivity {
     OrderItemsAdapter orderItemsAdapter;
     ArrayList<OrderDetails> orderList;
     ImageView backBtn;
-    TextView counterBtn;
+    TextView counterBtn, billAmount;
     FrameLayout frameLayout;
     Button payNowBtn;
     /// Firebase hooks ////
@@ -48,6 +48,7 @@ public class SelectedDishActivity extends AppCompatActivity {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         backBtn = findViewById(R.id.backBtn);
         counterBtn = findViewById(R.id.counterBtn);
+        billAmount = findViewById(R.id.bill_amount);
         payNowBtn = findViewById(R.id.payNowBtn);
         payNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,39 +80,34 @@ public class SelectedDishActivity extends AppCompatActivity {
 
     }
 
-//    private void counterText() {
-//        FirebaseDatabase.getInstance().getReference().child("OrderDetails").child(restaurantId).child(mUser.getUid()).child("Orders").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                counterBtn.setText("" + snapshot.getChildrenCount());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//    }
+
 
     private void showOrderDetails() {
         reference.child("UsersDatabase").child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserDatabase user = snapshot.getValue(UserDatabase.class);
-                String chefId = user.getRestaurantId();
+                final String chefId = user.getRestaurantId();
 
 
                 reference.child("OrderDetails").child(chefId).child(mUser.getUid()).child("Orders").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int amount = 0;
                         orderList.clear();
+                        counterBtn.setText(String.valueOf(snapshot.getChildrenCount()));
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             OrderDetails order = dataSnapshot.getValue(OrderDetails.class);
 
                             orderList.add(order);
-//
+                            if (order != null) {
+                                String price = order.getDishPrice();
+                                amount += Integer.parseInt(price);
+                            }
                         }
+
+                        billAmount.setText(String.valueOf(amount));
+                        reference.child("OrderDetails").child(chefId).child(mUser.getUid()).child("billAmount").setValue(amount);
                         orderItemsAdapter.notifyDataSetChanged();
 
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -56,6 +58,8 @@ public class MenuViewAdapter extends RecyclerView.Adapter<MenuViewAdapter.ViewHo
         String price = "Rs." + menuItems.getPrice();
         holder.dishPrice.setText(price);
         holder.dishName.setText(menuItems.getDescription());
+        Animation fromRight = AnimationUtils.loadAnimation(mContext, R.anim.enter_from_right);
+        holder.selectedDishBtn.setAnimation(fromRight);
 
 
         //// Method to check if dish is selected or not
@@ -79,10 +83,13 @@ public class MenuViewAdapter extends RecyclerView.Adapter<MenuViewAdapter.ViewHo
 
                                 ///// if user selects the dish then dishId and its details would be added into the OrderDetails database inside "Orders" child
                                 reference.child("OrderDetails").child(chefId).child(mUser.getUid()).child("Orders").child(menuItems.getRandomUID()).setValue(map);
+                                reference.child("OrderDetails").child(chefId).child(mUser.getUid()).child("billAmount").setValue(0);
                             } else {
 
                                 reference.child("OrderDetails").child(chefId).
                                         child(mUser.getUid()).child("Orders").child(menuItems.getRandomUID()).removeValue();
+                                reference.child("OrderDetails").child(chefId).child(mUser.getUid()).child("billAmount").removeValue();
+
                             }
 
                         }
@@ -133,6 +140,8 @@ public class MenuViewAdapter extends RecyclerView.Adapter<MenuViewAdapter.ViewHo
 
 
     private void isSelected(final String dishId, final ImageButton selectedDishBtn, final CardView menuCard, final Button dishName) {
+        final Animation fromRight = AnimationUtils.loadAnimation(mContext, R.anim.enter_from_right);
+        fromRight.setDuration(500);
         FirebaseDatabase.getInstance().getReference().child("UsersDatabase").child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -143,6 +152,8 @@ public class MenuViewAdapter extends RecyclerView.Adapter<MenuViewAdapter.ViewHo
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.child(dishId).exists()) {
                             dishName.setVisibility(View.GONE);
+                            selectedDishBtn.setAnimation(fromRight);
+
                             selectedDishBtn.setVisibility(View.VISIBLE);
                             menuCard.setTag("selected");
                         } else {

@@ -1,5 +1,6 @@
 package com.example.automatedfoodorderingsystem.userPart;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -116,6 +117,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private void showMenu() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Good things take time..");
+        pd.show();
         FirebaseDatabase.getInstance().getReference().child("UsersDatabase").child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -124,6 +128,7 @@ public class MenuActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("FoodDetails").child(restaurantId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        pd.dismiss();
                         menuList.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             FoodDetails menu = dataSnapshot.getValue(FoodDetails.class);

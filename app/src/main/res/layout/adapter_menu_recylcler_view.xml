@@ -112,7 +112,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:fontFamily="@font/arvo"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo"
+                android:src="@drawable/ic_check"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"

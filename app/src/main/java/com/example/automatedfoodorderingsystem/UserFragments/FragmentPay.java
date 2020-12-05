@@ -107,6 +107,7 @@ public class FragmentPay extends Fragment {
                                 payerName.setText(order.getUserName());
                                 payerMobile.setText(order.getUserPhone().substring(3));
                                 Picasso.get().load(order.getUserImg()).into(payerImage);
+                                payableAmount.setText(String.valueOf(order.getBillAmount()));
                             }
 
 

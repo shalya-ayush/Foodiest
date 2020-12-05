@@ -1,5 +1,6 @@
 package com.example.automatedfoodorderingsystem.userPart;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -118,7 +119,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
                 phoneNo, //phone number to verify
                 60,         //Timeout duration
                 TimeUnit.SECONDS,    //Unit of timeout
-                TaskExecutors.MAIN_THREAD,    // Activity (for callback binding)
+                (Activity) TaskExecutors.MAIN_THREAD,    // Activity (for callback binding)
                 mCallbacks); // onVerificationStateChangedCallbacks
 
     }

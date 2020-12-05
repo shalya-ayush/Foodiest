@@ -6,8 +6,10 @@ public class OrderDetails {
     String userPhone;
     String userImg;
 
+
     String dishName, dishPrice, dishQty;
     String restaurantId;
+    int billAmount;
 
 
     public OrderDetails() {
@@ -15,7 +17,7 @@ public class OrderDetails {
 
     ;
 
-    public OrderDetails(String userName, String userId, String userPhone, String userImg, String dishName, String dishPrice, String dishQty, String restaurantId) {
+    public OrderDetails(String userName, String userId, String userPhone, String userImg, String dishName, String dishPrice, String dishQty, String restaurantId, int billAmount) {
         this.userName = userName;
         this.userId = userId;
         this.userPhone = userPhone;
@@ -24,6 +26,7 @@ public class OrderDetails {
         this.dishPrice = dishPrice;
         this.dishQty = dishQty;
         this.restaurantId = restaurantId;
+        this.billAmount = billAmount;
     }
 
     public String getUserName() {
@@ -88,5 +91,13 @@ public class OrderDetails {
 
     public void setRestaurantId(String restaurantId) {
         this.restaurantId = restaurantId;
+    }
+
+    public int getBillAmount() {
+        return billAmount;
+    }
+
+    public void setBillAmount(int billAmount) {
+        this.billAmount = billAmount;
     }
 }

@@ -47,13 +47,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:drawableBottom="@drawable/ic_baseline_add_24"
-                android:drawablePadding="-10sp"
+                android:drawableBottom="@drawable/ic_shopping_cart"
+                android:drawablePadding="-0sp"
                 android:fontFamily="@font/arvo"
-                android:padding="10dp"
+                android:gravity="center"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="8dp"
                 android:text="0"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -191,12 +193,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:id="@+id/bill_amount"
                         android:background="@drawable/divider"
 
                         android:fontFamily="@font/arvo"
                         android:minWidth="100dp"
                         android:paddingVertical="10dp"
-                        android:text="Rs.620"
+                        android:text="Rs.0"
                         android:textAlignment="center"
                         android:textColor="@color/textColor"
                         android:textStyle="bold" />

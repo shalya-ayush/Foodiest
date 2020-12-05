@@ -90,7 +90,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_toEndOf="@id/pText"
                                 android:fontFamily="@font/arvo"
-                                android:hint="Rs.620"
+                                android:hint="Rs.0"
                                 android:textColor="@color/textColor"
                                 android:textSize="16sp" />
                         </RelativeLayout>
@@ -121,19 +121,19 @@
                 android:textColor="@color/textColor"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:fontFamily="@font/arvo"
-                android:text="Your Orders:"
-                android:textSize="16sp" />
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginVertical="10dp"-->
+            <!--                android:fontFamily="@font/arvo"-->
+            <!--                android:text="Your Orders:"-->
+            <!--                android:textSize="16sp" />-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/order_items_recylerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp" />
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:id="@+id/order_items_recylerView"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="10dp" />-->
 
 
             <TextView
