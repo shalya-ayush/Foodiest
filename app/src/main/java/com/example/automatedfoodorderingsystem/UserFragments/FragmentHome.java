@@ -59,10 +59,10 @@ public class FragmentHome extends Fragment {
         gridImagesArrayList.add(obj1);
         GridImages obj2 = new GridImages(R.drawable.logo);
         gridImagesArrayList.add(obj2);
-//        GridImages obj3 = new GridImages(R.drawable.image2);
-//        gridImagesArrayList.add(obj3);
-//        GridImages obj4 = new GridImages(R.drawable.image1);
-//        gridImagesArrayList.add(obj4);
+        GridImages obj3 = new GridImages(R.drawable.logo);
+        gridImagesArrayList.add(obj3);
+        GridImages obj4 = new GridImages(R.drawable.logo);
+        gridImagesArrayList.add(obj4);
 //        GridImages obj5 = new GridImages(R.drawable.logo);
 //        gridImagesArrayList.add(obj5);
 //        GridImages obj6 = new GridImages(R.drawable.image3);
