@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -32,6 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FragmentPay extends Fragment {
     CircleImageView payerImage;
     TextView payerName, payerMobile, payableAmount, restaurantName;
+    CircleImageView googlePay;
 
 
     // If user has not scan the QR code then no payment details will be shown to him
@@ -54,6 +56,7 @@ public class FragmentPay extends Fragment {
         payerMobile = view.findViewById(R.id.payer_mobile);
         payableAmount = view.findViewById(R.id.payable_amount);
         restaurantName = view.findViewById(R.id.restaurant_name);
+        googlePay = view.findViewById(R.id.googlePay);
 
 
         ///// Card View hooks ///////
@@ -75,6 +78,19 @@ public class FragmentPay extends Fragment {
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), ScannerActivity.class));
                 getActivity().finish();
+            }
+        });
+
+        /////// google pay button /////////
+        googlePay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = getActivity().getPackageManager().getLaunchIntentForPackage("com.google.android.apps.nbu.paisa.user");
+                if (i != null) {
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getContext(), "Some technical issue is there", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

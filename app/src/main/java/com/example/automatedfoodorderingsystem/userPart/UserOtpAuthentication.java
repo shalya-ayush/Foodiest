@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.Locale;
@@ -120,13 +121,21 @@ public class UserOtpAuthentication extends AppCompatActivity {
     }
 
     private void sendOTP() {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNo,                         //phone number to verify
-                60,                             //Timeout duration
-                TimeUnit.SECONDS,              //Unit of timeout
-                this,                         // Activity (for callback binding)
-                mCallbacks);                 // onVerificationStateChangedCallbacks
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber(phoneNo)
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this)                 // Activity (for callback binding)
+                .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
     }
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                phoneNo,                         //phone number to verify
+//                60,                             //Timeout duration
+//                TimeUnit.SECONDS,              //Unit of timeout
+//                this,                         // Activity (for callback binding)
+//                mCallbacks);                 // onVerificationStateChangedCallbacks
+//    }
 
     private void signInUserWithCredential(PhoneAuthCredential phoneAuthCredential) {
         mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
