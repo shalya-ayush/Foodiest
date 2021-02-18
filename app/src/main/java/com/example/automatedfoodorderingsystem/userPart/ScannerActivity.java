@@ -1,12 +1,16 @@
 package com.example.automatedfoodorderingsystem.userPart;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.automatedfoodorderingsystem.R;
@@ -43,6 +47,9 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                if (permissionDeniedResponse.isPermanentlyDenied()) {
+                    showSettingsDialog();
+                }
 
             }
 
@@ -83,6 +90,36 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         finish();
 //        onBackPressed();
 
+    }
+
+    /// If User denied the Camera Permissions
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ScannerActivity.this);
+        builder.setTitle("Need Permissions");
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    ///// To open the app permissions settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
     }
 
 
