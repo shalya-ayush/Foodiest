@@ -10,7 +10,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.automatedfoodorderingsystem.restaurantPart.RestaurantLoginActivity;
 import com.example.automatedfoodorderingsystem.userPart.UserDashboardActivity;
 import com.example.automatedfoodorderingsystem.userPart.UserRegistrationActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,13 +32,9 @@ public class MainActivity extends AppCompatActivity {
         userBtn = findViewById(R.id.user);
         logoImage = findViewById(R.id.logoImage);
 
-        Button restaurant = findViewById(R.id.restaurant);
-        Button skip = findViewById(R.id.skip);
 
         ////// To set Animation on user button and App logo  //////
         Animation fromRight = AnimationUtils.loadAnimation(this, R.anim.enter_from_right);
-        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
-//        logoImage.setAnimation(slideDown);
         userBtn.setAnimation(fromRight);
 
         //////User Button ////////
@@ -51,24 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /////// Restaurant Button /////
-        restaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RestaurantLoginActivity.class));
-                finish();
-            }
-        });
-
-        /////// Test Button ////////
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UserDashboardActivity.class));
-                finish();
-
-            }
-        });
 
         /////// To check if user is already logged in or not ///////
         authStateListener = new FirebaseAuth.AuthStateListener() {

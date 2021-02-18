@@ -63,14 +63,6 @@ public class FragmentHome extends Fragment {
         gridImagesArrayList.add(obj3);
         GridImages obj4 = new GridImages(R.drawable.logo);
         gridImagesArrayList.add(obj4);
-//        GridImages obj5 = new GridImages(R.drawable.logo);
-//        gridImagesArrayList.add(obj5);
-//        GridImages obj6 = new GridImages(R.drawable.image3);
-//        gridImagesArrayList.add(obj6);
-//        GridImages obj7 = new GridImages(R.drawable.logo);
-//        gridImagesArrayList.add(obj7);
-//        GridImages obj8 = new GridImages(R.drawable.ic_profile);
-//        gridImagesArrayList.add(obj8);
         gridViewAdapter = new GridViewAdapter(getContext(), gridImagesArrayList);
         nearbyRestaurantsView.setAdapter(gridViewAdapter);
         return view;

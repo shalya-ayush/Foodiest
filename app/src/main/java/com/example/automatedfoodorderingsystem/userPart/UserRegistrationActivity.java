@@ -16,12 +16,8 @@ import com.hbb20.CountryCodePicker;
 
 public class UserRegistrationActivity extends AppCompatActivity {
     // XML fields
-    TextInputLayout userName;
-    TextInputLayout userEmail;
-    TextInputLayout userPassword;
-    TextInputLayout userPhoneNo;
-    Button registerBtn;
-    Button loginBtn;
+    TextInputLayout userName, userEmail, userPassword, userPhoneNo;
+    Button registerBtn, loginBtn;
     ImageView backPressBtn;
     CountryCodePicker countryCodePicker;
     FirebaseAuth mAuth;
@@ -30,7 +26,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
-        // hooks
+        /////// hooks ////////
         userName = findViewById(R.id.user_name);
         userEmail = findViewById(R.id.user_email);
         userPassword = findViewById(R.id.user_password);
@@ -39,9 +35,10 @@ public class UserRegistrationActivity extends AppCompatActivity {
         countryCodePicker = findViewById(R.id.country_code);
         loginBtn = findViewById(R.id.user_login_btn);
         backPressBtn = findViewById(R.id.backPress);
+        ////// Firebase Hooks ////////
         mAuth = FirebaseAuth.getInstance();
 
-
+        /////// Back Press Button ///////
         backPressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +47,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             }
         });
 
-
+        /////// Register Button /////////
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +70,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        //////// Login Button ///////////
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +80,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         });
     }
 
+    //////Name Validation //////
     private boolean validateName() {
         String value = userName.getEditText().getText().toString().trim();
         if (value.isEmpty()) {
@@ -91,7 +90,6 @@ public class UserRegistrationActivity extends AppCompatActivity {
         } else if (value.length() > 20) {
             userName.setError("Username too large");
             userName.setHintEnabled(false);
-
             return false;
         } else {
             userName.setError(null);
@@ -99,6 +97,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         }
     }
 
+    ///// Email Validation /////
     private boolean validateEmail() {
         String value = userEmail.getEditText().getText().toString();
         String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -116,6 +115,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         }
     }
 
+    ////// Password Validation ////
     private boolean validatePassword() {
         String value = userPassword.getEditText().getText().toString().trim();
         if (value.length() < 6) {
@@ -128,6 +128,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         }
     }
 
+    ////// Mobile Number Validation //////
     private boolean validatePhone() {
         String value = userPhoneNo.getEditText().getText().toString();
         if (value.length() < 10) {
@@ -137,7 +138,6 @@ public class UserRegistrationActivity extends AppCompatActivity {
         } else {
 
             userPhoneNo.setError(null);
-
             return true;
         }
 

@@ -52,15 +52,15 @@
             android:textColor="@color/textColor" />
 
 
-        <CheckBox
-            android:id="@+id/user_remember_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:buttonTint="@color/selector"
-            android:text="Remember Me">
+        <!--        <CheckBox-->
+        <!--            android:id="@+id/user_remember_me"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_centerVertical="true"-->
+        <!--            android:buttonTint="@color/selector"-->
+        <!--            android:text="Remember Me">-->
 
-        </CheckBox>
+        <!--        </CheckBox>-->
 
 
         <Button

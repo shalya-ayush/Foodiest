@@ -16,7 +16,6 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-
         android:layout_marginVertical="10dp"
         android:src="@drawable/logo"
         app:civ_border_color="@color/colorPrimaryDark"
@@ -39,33 +38,33 @@
 
     </Button>
 
-    <Button
-        android:id="@+id/restaurant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:padding="15dp"
-        android:text="Restaurant Owner"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:visibility="gone">
+    <!--    <Button-->
+    <!--        android:id="@+id/restaurant"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/button_background"-->
+    <!--        android:padding="15dp"-->
+    <!--        android:text="Restaurant Owner"-->
+    <!--        android:textColor="#ffffff"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:visibility="gone">-->
 
-    </Button>
+    <!--    </Button>-->
 
-    <Button
-        android:id="@+id/skip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/button_background"
-        android:padding="15dp"
-        android:text="Skip Now (Test)"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:visibility="gone">
+    <!--    <Button-->
+    <!--        android:id="@+id/skip"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginVertical="10dp"-->
+    <!--        android:background="@drawable/button_background"-->
+    <!--        android:padding="15dp"-->
+    <!--        android:text="Skip Now (Test)"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:textColor="#ffffff"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:visibility="gone">-->
 
-    </Button>
+    <!--    </Button>-->
 
 
 </LinearLayout>

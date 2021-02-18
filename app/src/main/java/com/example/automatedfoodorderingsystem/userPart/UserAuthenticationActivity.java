@@ -20,7 +20,6 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -114,12 +113,6 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCodeToUser(String phoneNo) {
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                phoneNo, //phone number to verify
-//                60,         //Timeout duration
-//                TimeUnit.SECONDS,    //Unit of timeout
-//                (Activity) TaskExecutors.MAIN_THREAD,    // Activity (for callback binding)
-//                mCallbacks); // onVerificationStateChangedCallbacks
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
                 .setPhoneNumber(phoneNo)
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -140,7 +133,6 @@ public class UserAuthenticationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
                     if (task.getResult().getAdditionalUserInfo().isNewUser()) {
                         storeNewUsersData();   // Method to store data into the firebase
 
@@ -165,6 +157,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+
                     Toast.makeText(UserAuthenticationActivity.this, "Verification successful", Toast.LENGTH_SHORT).show();
                     sendUserToMainActivity(); //Method to send user to Dashboard Activity
                 } else {

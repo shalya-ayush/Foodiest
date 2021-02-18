@@ -35,9 +35,8 @@ public class UserOtpAuthentication extends AppCompatActivity {
     EditText mobileNo;
     EditText otp;
     TextView resendOtp;
-    private boolean mTimerRunning;
     Button loginBtn;
-    String phoneNo;
+    String phoneNo;     //// To get the phoneNumber from the previous activity
     String codeBySystem;
     FirebaseAuth mAuth;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
@@ -102,14 +101,14 @@ public class UserOtpAuthentication extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateTimerText();
-
-
             }
 
             @Override
             public void onFinish() {
-
-
+//                Toast.makeText(UserOtpAuthentication.this, "Enter the new OTP", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getApplicationContext(),UserLoginActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         }.start();
     }
@@ -129,13 +128,6 @@ public class UserOtpAuthentication extends AppCompatActivity {
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                phoneNo,                         //phone number to verify
-//                60,                             //Timeout duration
-//                TimeUnit.SECONDS,              //Unit of timeout
-//                this,                         // Activity (for callback binding)
-//                mCallbacks);                 // onVerificationStateChangedCallbacks
-//    }
 
     private void signInUserWithCredential(PhoneAuthCredential phoneAuthCredential) {
         mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -143,6 +135,7 @@ public class UserOtpAuthentication extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     sendUserToMainActivity();
+
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -159,4 +152,15 @@ public class UserOtpAuthentication extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+//    private void delayMethod(final Class mContext, int time){
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent i = new Intent(getApplicationContext(),mContext);
+//                startActivity(i);
+//            }
+//        },time);
+//    }
 }
